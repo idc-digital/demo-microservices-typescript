@@ -45,6 +45,28 @@ Our objective is to develop a robust and scalable web application using Node.js,
 
 ##### Description: (Engaging overview of the project's purpose, target audience, and differentiators)
 
+##### Architecture Sequence Diagram
+
+```mermaid
+
+sequenceDiagram
+    participant User
+    participant API
+    participant MongoDB
+
+    User ->> API: Request for user registration
+    API -->> MongoDB: Save user information
+
+    alt User information valid
+        MongoDB -->> API: User registration successful
+        API -->> User: Registration successful response
+    else User information invalid
+        MongoDB -->> API: User registration failed
+        API -->> User: Registration failed response
+    end
+```
+
+
 ##### Technology Stack:
 
 * Node.js (Version 18)
@@ -119,3 +141,10 @@ The application should handle numerous loads by leveraging the Docker image conc
 -	Open-source testing with SAST,DAST,IAST tools
 -	Integrate SCA component in the pipeline.
 -	Dependency Scan (Snyk ) etc
+-	
+
+
+
+
+
+
