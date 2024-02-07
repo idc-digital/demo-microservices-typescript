@@ -119,8 +119,3 @@ The application should handle numerous loads by leveraging the Docker image conc
 -	Open-source testing with SAST,DAST,IAST tools
 -	Integrate SCA component in the pipeline.
 -	Dependency Scan (Snyk ) etc
-
-
-### DataBase Connectivity
-- Setup MongoDB Locally
-- Mention the Local URL on your entry file 
