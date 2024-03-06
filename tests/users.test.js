@@ -1,10 +1,10 @@
 const request = require('supertest');
 const express = require('express');
-const router = require('../routes/users'); 
-const usersModel = require('../model/usersModel');; 
+const router = require('../routes/users.routers'); 
+const usersModel = require('../model/users.model');; 
 
 
-jest.mock('../model/usersModel', () => ({
+jest.mock('../model/users.model', () => ({
   find: jest.fn(),
   findById: jest.fn(),
   create: jest.fn(),
@@ -51,19 +51,19 @@ describe('GET /', () => {
 });
 
 //get by id test cases
-app.use('/user/:id', router);
-describe('GET user/:id', () => {
+app.use('/:id', router);
+describe('GET /:id', () => {
     test('should return 200 status and user details if user exists', async () => {
       const expectedUser = { id:1, name: 'User 1', age :21 ,email:'abc@gmail.com' };
       usersModel.findById.mockResolvedValueOnce(expectedUser);
-      const res = await request(app).get('/user/1');
+      const res = await request(app).get('/1');
       expect(res.status).toBe(200);
       expect(res.body).toEqual(expectedUser);
     });
   
     test('should return 404 status if user does not exist', async () => {
       usersModel.findById.mockResolvedValueOnce(null);
-      const res = await request(app).get('/user/456');
+      const res = await request(app).get('/456');
       expect(res.status).toBe(404);
       expect(res.body.message).toBe("User not found");
     });
@@ -71,7 +71,7 @@ describe('GET user/:id', () => {
     test('should handle errors and return 500 status', async () => {
       const errorMessage = 'Internal Server Error';
       usersModel.findById.mockRejectedValueOnce(new Error(errorMessage));
-      const res = await request(app).get('/user/789');
+      const res = await request(app).get('/789');
       expect(res.status).toBe(500);
       expect(res.body.message).toBe(errorMessage);
     });   
@@ -79,13 +79,13 @@ describe('GET user/:id', () => {
 });
 
 //Create test cases 
-app.use('/newusers/create', router);
-describe('POST /newusers/create', () => {
+app.use('/create', router);
+describe('POST /create', () => {
     test('should create a new user record', async () => {
       const newUser = { name: 'User 1', age :21 ,email:'abc@gmail.com' };
       usersModel.create.mockResolvedValueOnce(newUser);
       const res = await request(app)
-        .post('/newusers/create')
+        .post('/create')
         .send(newUser);
       expect(res.status).toBe(201);
       expect(res.body).toEqual(newUser);
@@ -94,7 +94,7 @@ describe('POST /newusers/create', () => {
     test('should return 400 status if required fields are missing', async () => {
       const incompleteUser = { name: 'John Doe', email: 'john@example.com' };
       const res = await request(app)
-        .post('/newusers/create')
+        .post('/create')
         .send(incompleteUser);
       expect(res.status).toBe(400);
       expect(res.body.message).toBe("Name, email, and age are required fields");
@@ -104,7 +104,7 @@ describe('POST /newusers/create', () => {
       const errorMessage = 'Internal server error';
       usersModel.create.mockRejectedValueOnce(new Error(errorMessage));
       const res = await request(app)
-        .post('/newusers/create')
+        .post('/create')
         .send({ name: 'John Doe', email: 'john@example.com', age: 30 });
       expect(res.status).toBe(500);
       expect(res.body.message).toBe(errorMessage);
@@ -192,10 +192,10 @@ describe('PUT /update/:id', () => {
 
   //delete all 
 
-  describe('DELETE /users route', () => {
+  describe('DELETE /delete-all route', () => {
     test('should delete all user records', async () => {
       usersModel.deleteMany.mockResolvedValueOnce({ n: 10 });
-      const res = await request(app).delete('/deleteAll');
+      const res = await request(app).delete('/delete-all');
       expect(res.status).toBe(200);
       expect(res.body.message).toBe('All users deleted successfully');
     });
@@ -203,7 +203,7 @@ describe('PUT /update/:id', () => {
     test('should handle errors and return 500 status', async () => {
       const errorMessage = 'Internal server error';
       usersModel.deleteMany.mockRejectedValueOnce(new Error(errorMessage));
-      const res = await request(app).delete('/deleteAll');
+      const res = await request(app).delete('/delete-all');
       expect(res.status).toBe(500);
       expect(res.body.message).toBe(errorMessage);
     });
