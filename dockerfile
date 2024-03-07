@@ -4,8 +4,13 @@ COPY index.js ./
 
 WORKDIR index.js ./
 
-RUN npm install --force
+ADD package*.json /.
+
+RUN npm install
+
+ADD . .
+
+CMD node index.js
 
 
 EXPOSE 4000
-CMD [ "node", "index.js" ]
