@@ -1,8 +1,8 @@
 FROM node:latest
 
-COPY /index.js .
+COPY index.js ./
 
-WORKDIR /index.js
+WORKDIR index.js
 
 RUN npm install
 
