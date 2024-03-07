@@ -1,6 +1,6 @@
 FROM node:latest
 
-COPY /demo-microservices-typescript/index.js
+COPY /demo-microservices-typescript/index.js .
 
 WORKDIR index.js
 
