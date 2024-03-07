@@ -4,10 +4,7 @@ COPY index.js ./
 
 WORKDIR index.js ./
 
-COPY package*.json ./
-
-
-RUN node index.js ./
+RUN npm install --force
 
 
 EXPOSE 4000
