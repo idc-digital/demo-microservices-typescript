@@ -1,8 +1,8 @@
 FROM node:latest
 
-WORKDIR /usr/src/app
+COPY /demo-microservices-typescript/index.js
 
-COPY package.json ./
+WORKDIR index.js
 
 RUN npm install
 
