@@ -6,11 +6,8 @@ WORKDIR index.js ./
 
 COPY package*.json ./
 
-USER node
 
-RUN npm install express
-
-COPY --chown=node:node . .
+RUN node index.js ./
 
 
 EXPOSE 4000
