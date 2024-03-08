@@ -18,6 +18,5 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
           
  
-      - name: run test cases
-        - run: NODE_ENV=development npm i
-        - run: npm test
+      - name: to run test cases
+        run: npm test 
