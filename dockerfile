@@ -4,13 +4,8 @@ COPY index.js ./
 
 WORKDIR index.js ./
 
-ADD package*.json /.
-
 RUN NODE_ENV=development npm i
-
-ADD . .
-
-CMD node index.js
 
 
 EXPOSE 4000
+CMD [ "node", "index.js" ]
