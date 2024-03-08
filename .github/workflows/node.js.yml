@@ -5,17 +5,16 @@ on:
     branches: ["main"]
  
 jobs:
-  build:
+  test:
+    name: Run Tests
     runs-on: ubuntu-latest
- 
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
- 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
-        with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-          
-      - run: npm run test
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: npm install  
+
+    - name: Run Test Cases
+      run: npm test 
