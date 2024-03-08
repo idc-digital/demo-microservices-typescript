@@ -6,7 +6,7 @@ WORKDIR index.js ./
 
 ADD package*.json /.
 
-RUN npm install
+RUN NODE_ENV=development npm i
 
 ADD . .
 
