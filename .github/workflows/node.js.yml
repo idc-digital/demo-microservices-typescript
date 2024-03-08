@@ -15,8 +15,8 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Change Directory
-      run: cd /NodeJS/demo-microservices-typescript
-      
+      run: cd NodeJS ./
+
     - name: Install Dependencies
       run: npm install
 
