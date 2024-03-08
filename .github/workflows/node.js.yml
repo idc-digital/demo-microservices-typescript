@@ -1,9 +1,10 @@
-name: Run test cases 
- 
+name: Run Test Cases
+
 on:
   push:
-    branches: ["main"]
- 
+    branches: 
+      - main
+
 jobs:
   test:
     name: Run Tests
@@ -13,5 +14,11 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
+    - name: Change Directory
+      run: cd /NodeJS/demo-microservices-typescript
+      
+    - name: Install Dependencies
+      run: npm install
+
     - name: Run Test Cases
-      run: npm test 
+      run: npm test
