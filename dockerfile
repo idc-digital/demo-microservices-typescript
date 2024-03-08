@@ -1,4 +1,4 @@
-FROM node:19.5.0-alpine
+FROM node:10-alpine
 
 COPY index.js ./
 
