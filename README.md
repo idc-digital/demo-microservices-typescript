@@ -30,6 +30,10 @@ Our objective is to develop a robust and scalable web application using Node.js,
 changes
 
 
+#### Testing:
+changes
+
+
 #### Security:
 * Explain how Sonarcloud integrates with your security practices.
 * Briefly mention how cyber security planning manifests in the architecture.
